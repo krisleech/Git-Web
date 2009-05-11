@@ -1,0 +1,8 @@
+nbproject
+*.log
+db/schema.rb
+db/schema.sql
+.DS_store
+tmp/**/*
+doc/api
+doc/app
