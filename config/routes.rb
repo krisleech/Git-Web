@@ -1,4 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
+
+
+  map.repositories  '/repositories', :controller => 'repositories'
+  map.repository    '/repositories/:repository', :controller => 'repositories', :action => 'show'
+  map.commit        '/repositories/:repository/commits/:commit', :controller => 'commits', :action => 'show'
+  map.tree          '/repositories/:repository/commits/:commit/tree/:tree', :controller => 'trees', :action => 'show'
+  map.blob          '/repositories/:repository/commits/:commit/blobs/:blob', :controller => 'blobs', :action => 'show'
+
+  
+
+  map.root  :controller => 'repositories'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

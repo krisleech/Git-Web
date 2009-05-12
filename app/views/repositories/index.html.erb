@@ -1,0 +1,7 @@
+<h2>Repositories</h2>
+<ul>
+  <% @repositories.each do |r| %>
+    <li><a href="<%= repository_path(r) %>"><%= r %></a></li>
+  <% end%>
+</ul>
+

@@ -1,0 +1,32 @@
+<h2>Tree</h2>
+
+Commit: <a href="<%= commit_path(params[:repository], @commit)  %>"><%= @commit.id %></a><br />
+id: <a href="<%= tree_path(params[:repository], @commit, @commit.tree) %>"><%= @commit.tree.id %></a><br />
+<% if @commit.parents.size == 1 %>
+Parent commit:
+<% if @commit.parents.first.id == @tree.id %>
+Root
+<% else%>
+<a href="<%= commit_path(params[:repository], @commit.parents.first) %>"><%= @commit.parents.first.id %></a>
+<% end %>
+<br />
+<% else %>
+Parents: multiple
+<% end %>
+
+<h3>Files</h3>
+<% @tree.contents.each do |c| %>
+
+<div>
+	<% if c.is_a? Grit::Blob %>
+		<a href="<%= blob_path(params[:repository], @commit, c) %>"><%= c.name %></a>
+		<%= c.mime_type %>
+			<%= c.size %> bytes
+					<%= c.basename %>
+	<% else %>
+		<a href="<%= tree_path(params[:repository], @commit, c) %>"><%= c.name %></a>
+	<% end %>
+
+
+	</div>
+	<% end %>

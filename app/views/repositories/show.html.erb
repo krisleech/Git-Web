@@ -1,0 +1,26 @@
+<h2><a href="<%= repository_path(params[:repository]) %>"><%= params[:repository] %></a></h2>
+
+<%= @repository.description %>
+
+
+<h3>Branches</h3>
+<% unless @repository.branches.blank? %>
+  <ul>
+    <% @repository.branches.each do |branch| %>
+      <li><a href="<%= commit_path(params[:repository], branch.name) %>"><%= branch.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No branches yet</p>
+<% end %>
+
+<h3>Tags</h3>
+<% unless @repository.tags.blank? %>
+  <ul>
+    <% @repository.tags.each do |tag| %>
+      todo
+    <% end %>
+  </ul>
+<% else %>
+  <p>No tags yet</p>
+<% end %>

@@ -1,11 +1,5 @@
 defaults: &defaults
-  site_url: http://fandango.local
-  site_name: Fandango [DEV]
-  admin_email: kris.leech@interkonect.com
-  admin_name: Kris Leech
-  roles: admin, publisher, system
-  system_folders: news, links, blog, faqs, pages, deleted
-  modules_enabled: pages, news, links, faqs
+  git_path: /home/git/private
   
 
 development:
@@ -16,12 +10,7 @@ test:
 
 staging:
   <<: *defaults
-  site_url: http://dev.crc2020.co.uk
-  site_name: Fandango [BETA]
-  admin_email: kris.leech@interkonect.com
   
 production:
   <<: *defaults
-  site_url: http://crc2020.co.uk
-  site_name: Fandango
-  admin_email: kris.leech@interkonect.com
+  
