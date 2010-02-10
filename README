@@ -1,6 +1,22 @@
 WebGit
 
-This is a simple web UI for Git Repositories.
+A simple web UI for browsing Git Repositories.
 
+* No database required
+* No authorisation / authentication
+* No writes
 
+Usage:
 
+Edit setting.yml and add the root path to your Git Repositories.
+./script/server
+
+Dependancies:
+
+Rails and Grit gems
+
+TODO:
+
+* Turn this in to an engine plugin
+* Allow git commits via HTTP (would assume use of own authorisation eg. CanCan)
+* Needs a nice design
