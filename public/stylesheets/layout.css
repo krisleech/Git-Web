@@ -1,0 +1,59 @@
+
+#container {    
+    text-align:left;
+    overflow:hidden;
+    background-color: white;
+}
+
+#current_repos {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+}
+
+#repos_nav {
+ 
+
+}
+
+#header {
+    height: 90px;
+    background-color: blue;
+
+}
+
+
+#header ul {
+    
+}
+#header ul li { list-style:none; }
+#header ul li a { color: inherit;margin-right: 20px;}
+
+
+#content {    
+     background-color: white;
+     padding: 40px;
+      padding-top:20px;
+}
+
+
+
+#sidebar {
+   background-color:white;
+  padding-top:20px;
+}
+
+#footer {
+    padding-top: 10px;
+    height: 30px;
+    width:100%;
+    position: fixed;
+    bottom:0px;
+    background-image:url(/images/layout/fade.png);
+    border-top: 1px solid #828282;
+    font-weight: bold;
+}
+
+
+
+

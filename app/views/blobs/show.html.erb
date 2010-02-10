@@ -1,12 +1,26 @@
-<h2><%= params[:repository] %></h2>
 
-<h4><a href="<%= blob_path(params[:repository], @commit, @blob) %>" title="<%= @blob.id %>"><%= @blob.name %></a></h4>
 
+
+<h2 class="repos_name"><a href="<%= repository_path(params[:repository]) %>"><%= make_readable(params[:repository]) %></a></h2>
+
+<h4><a href="<%= blob_path(@repository, @commit, @blob) %>" title="<%= @blob.id %>"><%= @blob.name %></a></h4>
 
 Commit: <a href="<%= commit_path(params[:repository], @commit) %>"><%= @commit.id %></a><br />
 Tree: <a href="<%= tree_path(params[:repository], @commit, @commit.tree) %>"><%= @commit.tree.id %></a><br />
 
 
-<code>
+
+
+NAME:<%= @blob.name %><BR>
+<%= @blob.size %> KB
+
+TYPE: <%= blob_filetype(@blob) rescue 'none'  %><BR>
+
+
+
 <%= @blob.data %>
-</code>
+
+
+
+<%= blob_raw_path(params[:repository], @commit, @blob) %>
+

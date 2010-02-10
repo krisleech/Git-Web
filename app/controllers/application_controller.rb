@@ -5,9 +5,8 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
-  require 'grit'
-
-  include Grit
+#  require 'grit'
+#  include Grit
 
   # Make objects compatible with url helpers
   class Grit::Tree
@@ -20,11 +19,7 @@ class ApplicationController < ActionController::Base
     def to_param
       self.id
     end
-  end
-
-
-  # Scrub sensitive parameters from your log
-  # filter_parameter_logging :password
+  end  
 
   before_filter :find_repository
 
@@ -33,6 +28,6 @@ class ApplicationController < ActionController::Base
   def find_repository
    path = [SETTINGS[:git_path], params[:repository]].join('/')
    is_bare = !(File.exists?(path + '/.git'))
-   @repository = Repo.new(path, { :is_bare => is_bare })
+   @repository = Grit::Repo.new(path, { :is_bare => is_bare })
   end
 end

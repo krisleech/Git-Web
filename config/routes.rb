@@ -6,6 +6,7 @@ ActionController::Routing::Routes.draw do |map|
   map.commit        '/repositories/:repository/commits/:commit', :controller => 'commits', :action => 'show'
   map.tree          '/repositories/:repository/commits/:commit/tree/:tree', :controller => 'trees', :action => 'show'
   map.blob          '/repositories/:repository/commits/:commit/blobs/:blob', :controller => 'blobs', :action => 'show'
+  map.blob_raw      '/repositories/:repository/commits/:commit/blobs/:blob/raw', :controller => 'blobs', :action => 'show', :raw => true
 
   
 

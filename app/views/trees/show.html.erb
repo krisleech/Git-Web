@@ -1,3 +1,5 @@
+<h2 class="repos_name"><a href="<%= repository_path(params[:repository]) %>"><%= make_readable(params[:repository]) %></a></h2>
+
 <h2>Tree</h2>
 
 Commit: <a href="<%= commit_path(params[:repository], @commit)  %>"><%= @commit.id %></a><br />
@@ -15,18 +17,12 @@ Parents: multiple
 <% end %>
 
 <h3>Files</h3>
+<table border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <th></th>
+    <th>Name</th>
+  </tr>
 <% @tree.contents.each do |c| %>
-
-<div>
-	<% if c.is_a? Grit::Blob %>
-		<a href="<%= blob_path(params[:repository], @commit, c) %>"><%= c.name %></a>
-		<%= c.mime_type %>
-			<%= c.size %> bytes
-					<%= c.basename %>
-	<% else %>
-		<a href="<%= tree_path(params[:repository], @commit, c) %>"><%= c.name %></a>
+  <%= render :partial => '/shared/content', :locals => { :c => c } %>
 	<% end %>
-
-
-	</div>
-	<% end %>
+    </table>

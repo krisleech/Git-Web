@@ -1,0 +1,10 @@
+<tr>
+  <% if c.is_a? Grit::Blob -%>
+    <td><%= blob_icon(c)  %></td>
+    <td><a href="<%= blob_path(params[:repository], @commit, c) %>"><%= c.name %></a></td>
+    <td><%= c.size %> bytes</td>
+  <% else -%>
+    <td><img src="/images/file_icons/folder.png" /></td>
+    <td><a href="<%= tree_path(params[:repository], @commit, c) %>"><%= c.name %></a></td>
+  <% end -%>
+</tr>

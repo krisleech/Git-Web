@@ -1,6 +1,6 @@
-<h2><a href="<%= repository_path(params[:repository]) %>"><%= params[:repository] %></a></h2>
+<h2 class="repos_name"><a href="<%= repository_path(params[:repository]) %>"><%= make_readable(params[:repository]) %></a></h2>
 
-<%= @repository.description %>
+<%# @repository.description %>
 
 
 <h3>Branches</h3>
@@ -11,7 +11,7 @@
     <% end %>
   </ul>
 <% else %>
-  <p>No branches yet</p>
+  <li>No branches yet</li>
 <% end %>
 
 <h3>Tags</h3>

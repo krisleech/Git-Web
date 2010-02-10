@@ -1,50 +1,31 @@
-<h2><%= params[:repository] %></h2>
-
 <%= 'HEAD' if @repository.is_head? @commit %>
 
-<h4><a href="<%= commit_path(params[:repository], @commit) %>" title="<%= @commit.id %>">Commit</a></h4>
+<h4 class="commit_name">
+  <a href="<%= commit_path(params[:repository], @commit) %>" title="<%= @commit.id %>">Commit</a>
+</h4>
 
-P:<% if @commit.parents.size == 1 %>
-<a href="<%= tree_path(params[:repository], @commit, @commit.parents.first) %>" title="<%= @commit.parents.first.id %>">Previous</a>
-<% else %>
-Multiple Parent Commits
+<% if @commit.parents.size == 1 %>
+  <a href="<%= commit_path(params[:repository], @commit.parents.first) %>" title="<%= @commit.parents.first.id %>">Previous</a>
 <% end %>
 
-<div id="">
-Tree: <a href="<%= tree_path(params[:repository], @commit, @commit.tree) %>"><%= @commit.tree.id %></a><br />
+<div id="commit_message">
+  <%= @commit.message %>
 </div>
 
-
-Date: <%= @commit.committed_date.strftime('%A %d %b') %><br />
-Committer: <%= @commit.committer %><br />
-Message: <%= @commit.message %><br />
+<div id="commit_meta" style="position:absolute;right: 100px;">
+  Date: <%= @commit.committed_date.strftime('%A %d %b') %><br />
+  Committer: <%= @commit.committer %><br />
+</div>
 
 <h4><a href="<%= tree_path(params[:repository], @commit, @commit.tree) %>" title="<%= @commit.tree.id %>">Tree</a></h4>
 
-
 <table border="0" cellspacing="0" cellpadding="0">
-	<tr>
-		<th></th>
-		<th>Name</th>
-		</tr>
-
-<% @commit.tree.contents.each do |c| %>
-
-<tr>
-
-	<% if c.is_a? Grit::Blob %>
-		<td><%= File.extname(c.name).gsub( /^\./, '' ).downcase %></td>
-		<td><a href="<%= blob_path(params[:repository], @commit, c) %>"><%= c.name %></a></td>
-
-		<td><%= c.mime_type %></td>
-		<td><%= c.size %> bytes</td>
-	<% else %>
-	<td>Fld</td>
-<td>		<a href="<%= tree_path(params[:repository], @commit, c) %>"><%= c.name %></a></td>
-	<% end %>
-
-	</tr>
-
-<% end %>
+  <tr>
+    <th></th>
+    <th>Name</th>
+  </tr>
+  <% @commit.tree.contents.each do |c| -%>
+    <%= render :partial => '/shared/content', :locals => { :c => c } %>
+  <% end -%>
 </table>
 

@@ -6,15 +6,47 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <title>untitled</title>
-
+    <%= stylesheet_link_tag 'layout'  %>
+    <%= stylesheet_link_tag 'styles'  %>
+    <%= stylesheet_link_tag 'utils'  %>
   </head>
 
   <body>
-    <div id="header">
+    <% if @repository %>
+        <div id="current_repos">
+          <h2 class="repos_name"><a href="<%= repository_path(params[:repository]) %>"><%= make_readable(params[:repository]) %></a></h2>
+        </div>
+      <% end %>
+      <div id="container">
+        <div id="header">
+          <ul>
+            <li><a href="<%= repositories_path %>">Repositories</a></li>
+            <% if @repository %>
+              <li>Branches
+                <% unless @repository.branches.blank? %>
+                  <ul>
+                    <% @repository.branches.each do |branch| %>
+                      <li><a href="<%= commit_path(params[:repository], branch.name) %>"><%= branch.name %></a></li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <p>No branches yet</p>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+
+
+
+        <div id="content">
+          <%= yield %>
+        </div>
+
+        <div id="footer"></div>
+
+      </div> <!-- CONTAINIER -->
+
       
-    </div>
-    <div id="content">
-      <%= yield %>
-    </div>
-  </body>
-</html>
+    </body>
+  </html>
